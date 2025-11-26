@@ -1,0 +1,358 @@
+متطورة
+:<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ELECTRON VISION | ELVI OS</title>
+
+<style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+        font-family:'Poppins',sans-serif;
+        background:#050505;
+        color:#fff;
+        overflow-x:hidden;
+    }
+    .bg-glow{
+        position:fixed;width:600px;height:600px;
+        background:radial-gradient(circle,#00ffcc55 0%,transparent 70%);
+        top:-200px;left:-200px;
+        filter:blur(90px);z-index:-1;
+        animation:moveGlow 10s infinite alternate ease-in-out;
+    }
+    @keyframes moveGlow{
+        from{transform:translate(0,0)}
+        to{transform:translate(150px,80px)}
+    }
+    nav{
+        position:fixed;top:0;width:100%;
+        display:flex;justify-content:space-between;
+        padding:20px 50px;
+        background:rgba(0,0,0,0.35);
+        backdrop-filter:blur(10px);
+        border-bottom:1px solid #0f0f0f;
+        z-index:1000;
+    }
+    nav h1{
+        font-size:26px;color:#00ffd5;
+        letter-spacing:2px;text-shadow:0 0 15px #00ffd5;
+    }
+    nav ul{
+        display:flex;gap:35px;list-style:none;
+    }
+    nav ul li a{
+        color:#fff;text-decoration:none;font-size:17px;transition:.3s;
+    }
+    nav ul li a:hover{
+        color:#00ffd5;text-shadow:0 0 10px #00ffd5;
+    }
+    .hero{
+        height:100vh;display:flex;flex-direction:column;
+        justify-content:center;align-items:center;text-align:center;
+        padding:20px;
+        background:url('https://images.unsplash.com/photo-1527443154391-507e9dc6c5cc?auto=format&fit=crop&w=1600&q=80') center/cover fixed;
+        position:relative;
+    }
+    .hero::after{
+        content:"";position:absolute;inset:0;
+        background:rgba(0,0,0,0.7);backdrop-filter:blur(3px);
+    }
+    .hero-content{
+        position:relative;z-index:2;
+        animation:fadeUp 1.6s ease;
+    }
+    @keyframes fadeUp{
+        from{opacity:0;transform:translateY(20px)}
+        to{opacity:1;transform:translateY(0)}
+    }
+    .hero h2{
+        font-size:70px;color:#00ffd5;
+        text-shadow:0 0 30px #00ffd5;
+    }
+    .hero p{
+        margin-top:10px;font-size:24px;color:#eee;
+    }
+    .hero button{
+        margin-top:40px;padding:15px 45px;background:#00ffd5;
+        color:#000;border:none;border-radius:10px;
+        cursor:pointer;font-size:20px;transition:.3s;
+    }
+    .hero button:hover{
+        transform:scale(1.07);background:#00e6c2;
+    }
+    section{
+        padding:120px 70px;text-align:center;
+    }
+    section h3{
+        font-size:38px;margin-bottom:25px;color:#00ffd5;
+        text-shadow:0 0 20px #00ffd5;
+    }
+    .cards{
+        display:flex;justify-content:center;gap:40px;flex-wrap:wrap;margin-top:50px;
+    }
+    .card{
+        width:300px;background:rgba(10,10,10,0.65);
+        backdrop-filter:blur(10px);
+        border:1px solid #0f0f0f;border-radius:18px;
+        padding:30px;transition:.4s;
+        box-shadow:0 0 12px #003f32;
+    }
+    .card:hover{
+        transform:translateY(-12px);
+        box-shadow:0 0 25px #00ffd5;
+    }
+    footer{
+        padding:30px;text-align:center;background:#000;color:#777;font-size:15px;
+    }
+    .download-box{
+        margin-top:40px;
+        padding:20px;
+        background:#00000080;
+        border:1px solid #00ffd5;
+        border-radius:12px;
+        max-width:400px;
+        margin:auto;
+    }
+    .download-box a{
+        color:#00ffd5;
+        text-decoration:none;
+        font-size:20px;
+        display:block;
+        margin-top:10px;
+    }
+    .contact-card{
+    border:1px solid #0f0f0f;
+    border-radius:18px;
+    padding:30px;
+    transition:.4s;
+    box-shadow:0 0 12px #003f32;
+    max-width:500px;
+    margin:40px auto;
+    background: #000000d0;
+    color:#00ffd5;
+    font-family: Arial, sans-serif;
+}
+.contact-card:hover{
+    transform:translateY(-12px);
+    box-shadow:0 0 25px #00ffd5;
+}
+.contact-card h2{
+    text-align:center;
+    color:#00ffd5;
+    margin-bottom:20px;
+}
+.contact-card a{
+    color:#00ffd5;
+    text-decoration:none;
+}
+.contact-card input, 
+.contact-card textarea{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+    border:1px solid #00ffd5;
+    border-radius:12px;
+    background:#00000080;
+    color:#00ffd5;
+}
+.contact-card input:focus,
+.contact-card textarea:focus{
+    outline:none;
+    border-color:#00ffcc;
+    box-shadow:0 0 8px #00ffd5;
+}
+.contact-card button{
+    width:100%;
+    padding:12px;
+    background:#00ffd5;
+    color:#000;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+.contact-card button:hover{
+    background:#00ffcc;
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-glow"></div>
+
+<nav>
+    <h1>ELECTRON VISION</h1>
+    <ul>
+        <li><a href="#home">الرئيسية</a></li>
+        <li><a href="#about">من نحن</a></li>
+        <li><a href="#products">المنتجات</a></li>
+        <li><a href="#download">تحميل</a></li>
+        <li><a href="#phone">تواصل معنا</a></li>
+    </ul>
+</nav>
+
+<div class="hero" id="home">
+    <div class="hero-content">
+        <h2>ELVI OS</h2>
+        <p>نظام تشغيل فاخر. أسرع. أجمل. أقوى.</p>
+        <button onclick="scrollToSection('products')">استكشف</button>
+    </div>
+</div>
+
+
+<section id="about">
+    <h3>من نحن</h3>
+    <p style="font-size:20px; max-width:700px; margin:auto;">
+        نحن ELECTRON VISION، شركة تهدف إلى بناء تجارب رقمية متطورة تؤسس لمرحلة جديدة
+        من الذكاء، السرعة، والابتكار… والواجهة التي تراها الآن مجرد بداية.
+    </p>
+</section>
+
+
+<section id="products">
+    <h3>منتجاتنا</h3>
+
+    <div class="cards">
+        <div class="card">
+            <h4 style="color:#00ffd5;font-size:24px;">ELVI OS</h4>
+            <p style="margin-top:10px;">نظام تشغيل ثوري بواجهة ثلاثية الأبعاد وخفة عالية.</p>
+        </div>
+
+        <div class="card">
+            <h4 style="color:#00ffd5;font-size:24px;">EV Cloud</h4>
+            <p style="margin-top:10px;">خدمة سحابية سريعة وآمنة، قادمة مع النظام.</p>
+        </div>
+
+        <div class="card">
+            <h4 style="color:#00ffd5;font-size:24px;">EV Toolkit</h4>
+            <p style="margin-top:10px;">مجموعة أدوات احترافية لتعزيز تجربة المستخدم.</p>
+        </div>
+    </div>
+</section>
+
+<section id="download">
+    <h3> تحميل منتجاتنا</h3>
+
+    <div class="download-box" id="downloadList">
+        <p>سيتم عرض ملفات النظام هنا بعد رفعها من لوحة التحكم.</p>
+    </div>
+</section>
+<section class="contact-card">
+
+    <section id="phone"></section>
+        <h3>لتواصل مع فريق دعم</h3>
+  <p>تواصل معنا عبر البريد أو الهاتف:</p>
+  <div class="contact-info">
+    <p>📧 البريد الإلكتروني: <a href="mailto:info@electronvision.sy">electron.visionn@gmail.com</a></p>
+    <p>📞 الهاتف 1: +963 951 940 804</p>
+    <p>📞 الهاتف 2: +963 954 190 289</p>
+  </div>
+  <form action="mailto:info@electronvision.sy" method="post" enctype="text/plain">
+    <input type="text" name="name" placeholder="الاسم" required>
+    <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+    <textarea name="message" rows="4" placeholder="رسالتك" required></textarea>
+    <button type="submit">إرسال</button>
+  </form>
+</section>
+
+<style>
+.contact-card{
+    border:1px solid #0f0f0f;
+    border-radius:18px;
+    padding:30px;
+    transition:.4s;
+    box-shadow:0 0 12px #003f32;
+    max-width:500px;
+    margin:40px auto;
+    background: #000000d0;
+    color:#00ffd5;
+    font-family: Arial, sans-serif;
+}
+.contact-card:hover{
+    transform:translateY(-12px);
+    box-shadow:0 0 25px #00ffd5;
+}
+.contact-card h2{
+    text-align:center;
+    color:#00ffd5;
+    margin-bottom:20px;
+}
+.contact-card a{
+    color:#00ffd5;
+    text-decoration:none;
+}
+.contact-card input, 
+.contact-card textarea{
+    width:100%;
+    padding:10px;
+    margin-bottom:15px;
+    border:1px solid #00ffd5;
+    border-radius:12px;
+    background:#00000080;
+    color:#00ffd5;
+}
+.contact-card input:focus,
+.contact-card textarea:focus{
+    outline:none;
+    border-color:#00ffcc;
+    box-shadow:0 0 8px #00ffd5;
+}
+.contact-card button{
+    width:100%;
+    padding:12px;
+    background:#00ffd5;
+    color:#000;
+    border:none;
+    border-radius:12px;
+    font-size:16px;
+    cursor:pointer;
+    transition:.3s;
+}
+.contact-card button:hover{
+    background:#00ffcc;
+}
+</style>
+
+<footer>
+    ELECTRON VISION © 2025 – All Rights Reserved
+</footer>
+
+<script>
+function scrollToSection(id){
+    document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+function scrollToSection(id){
+    document.getElementById(id).scrollIntoView({behavior:"smooth"});
+}
+
+async function loadFiles() {
+    const res = await fetch('http://localhost:3000/files'); // يستدعي السيرفر
+    const files = await res.json();
+    const box = document.getElementById("downloadList");
+
+    if(files.length === 0){
+        box.innerHTML = "<p>لا يوجد ملفات متاحة حالياً.</p>";
+        return;
+    }
+
+    box.innerHTML = "";
+    files.forEach((file, index) => {
+        box.innerHTML += `
+            <div style="padding:10px 0; border-bottom: 1px solid #00ffd5; margin-bottom:5px;">
+                <a href="/download/${file.filename}" download style="color:#00ffd5; text-decoration:none; font-size:20px;">
+                    ${file.originalname}
+                </a>
+            </div>
+        `;
+    });
+}
+
+loadFiles();
+
+</script>
+
+</body>
+</html>
